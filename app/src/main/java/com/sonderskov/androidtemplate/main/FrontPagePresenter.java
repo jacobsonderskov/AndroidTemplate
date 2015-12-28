@@ -1,6 +1,7 @@
 package com.sonderskov.androidtemplate.main;
 
 import com.google.inject.Inject;
+import com.sonderskov.androidtemplate.BasePresenter;
 
 public class FrontPagePresenter extends BasePresenter {
 

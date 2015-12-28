@@ -48,9 +48,11 @@ public class FrontPageFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mText = getArguments().getString(ARG_TEXT);
         }
+
         mPresenter.init(mText);
     }
 
