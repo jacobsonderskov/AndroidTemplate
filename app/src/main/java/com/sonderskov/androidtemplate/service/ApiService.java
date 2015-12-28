@@ -1,6 +1,6 @@
 package com.sonderskov.androidtemplate.service;
 
-public interface TemplateService {
+public interface ApiService {
 
     Object getObject();
 }
