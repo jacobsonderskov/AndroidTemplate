@@ -19,12 +19,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private MainNavigation mNavigation = new MainNavigation() {
         @Override
         public void showFrontPage() {
-            Fragment fragment = FrontPageFragment.newInstance(null, null);
+            Fragment fragment = FrontPageFragment.newInstance("Hello world!");
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .commit();
         }
     };
+
+    public MainNavigation getNavigation() {
+        return mNavigation;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,4 +119,5 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
