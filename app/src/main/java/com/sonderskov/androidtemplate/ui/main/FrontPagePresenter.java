@@ -3,7 +3,7 @@ package com.sonderskov.androidtemplate.ui.main;
 import com.google.inject.Inject;
 import com.sonderskov.androidtemplate.ui.BasePresenter;
 import com.sonderskov.androidtemplate.ui.DialogHelper;
-import com.sonderskov.androidtemplate.ui.TypedCallback;
+import com.sonderskov.androidtemplate.service.TypedCallback;
 
 public class FrontPagePresenter extends BasePresenter {
 

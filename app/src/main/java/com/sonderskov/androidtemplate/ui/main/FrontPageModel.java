@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import com.google.inject.Inject;
 import com.sonderskov.androidtemplate.R;
 import com.sonderskov.androidtemplate.service.ApiService;
-import com.sonderskov.androidtemplate.ui.TypedCallback;
+import com.sonderskov.androidtemplate.service.TypedCallback;
 
 
 public class FrontPageModel {
@@ -27,7 +27,7 @@ public class FrontPageModel {
     }
 
     public void getApiText(final TypedCallback<String> callback) {
-        mService.getString(new TypedCallback<String>(){
+        mService.getString(new TypedCallback<String>() {
 
             @Override
             public void onSuccess(String result) {

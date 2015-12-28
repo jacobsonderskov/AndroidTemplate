@@ -1,4 +1,4 @@
-package com.sonderskov.androidtemplate.ui;
+package com.sonderskov.androidtemplate.service;
 
 public interface TypedCallback<T> {
 
