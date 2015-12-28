@@ -2,14 +2,18 @@ package com.sonderskov.androidtemplate.ui;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Bundle;
 
 import com.google.inject.Inject;
 
 import roboguice.fragment.RoboFragment;
 
-public class BaseFragment extends RoboFragment implements DialogHelper {
+public abstract class BaseFragment extends RoboFragment implements DialogHelper {
+
     @Inject
     private Resources mResources;
+
+    protected abstract BasePresenter getPresenter();
 
     @Override
     public void showErrorDialog(Object error) {
@@ -23,6 +27,24 @@ public class BaseFragment extends RoboFragment implements DialogHelper {
     public void onAttach(Context context) {
         super.onAttach(context);
         ((BaseActivity)getActivity()).addToBackStack(this);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getPresenter().onCreate(getArguments());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getPresenter().onStart();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getPresenter().onDestroy();
     }
 
     @Override

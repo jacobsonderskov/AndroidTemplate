@@ -1,11 +1,15 @@
 package com.sonderskov.androidtemplate.ui.main;
 
+import android.os.Bundle;
+
 import com.google.inject.Inject;
 import com.sonderskov.androidtemplate.ui.BasePresenter;
 import com.sonderskov.androidtemplate.ui.DialogHelper;
 import com.sonderskov.androidtemplate.service.TypedCallback;
 
 public class FrontPagePresenter extends BasePresenter {
+
+    public static final String ARG_TEXT = "text";
 
     public interface View {
         DialogHelper getDialogHelper();
@@ -27,8 +31,12 @@ public class FrontPagePresenter extends BasePresenter {
         mView = view;
     }
 
-    public void init(String text) {
-        mModel.init(text);
+    @Override
+    public void onCreate(Bundle args) {
+        if (args!= null) {
+            mModel.init(args.getString(ARG_TEXT));
+        }
+
     }
 
     @Override

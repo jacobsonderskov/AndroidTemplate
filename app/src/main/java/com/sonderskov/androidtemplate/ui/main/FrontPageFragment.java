@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.google.inject.Inject;
 import com.sonderskov.androidtemplate.ui.BaseFragment;
 import com.sonderskov.androidtemplate.R;
+import com.sonderskov.androidtemplate.ui.BasePresenter;
 import com.sonderskov.androidtemplate.ui.DialogHelper;
 
 import roboguice.inject.InjectView;
@@ -16,13 +17,10 @@ import roboguice.inject.InjectView;
 
 public class FrontPageFragment extends BaseFragment {
 
-    private static final String ARG_TEXT = "text";
-
     @InjectView(R.id.text)
     private TextView mTextView;
     @InjectView(R.id.api_text)
     private TextView mApiTextView;
-
 
     private FrontPagePresenter.View mView = new FrontPagePresenter.View() {
         @Override
@@ -42,9 +40,12 @@ public class FrontPageFragment extends BaseFragment {
     };
 
     @Inject
-    private FrontPagePresenter mPresenter;
+    protected FrontPagePresenter mPresenter;
 
-    private String mText;
+    @Override
+    protected BasePresenter getPresenter() {
+        return mPresenter;
+    }
 
     public FrontPageFragment() {
         // Required empty public constructor
@@ -53,20 +54,9 @@ public class FrontPageFragment extends BaseFragment {
     public static FrontPageFragment newInstance(String text) {
         FrontPageFragment fragment = new FrontPageFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_TEXT, text);
+        args.putString(FrontPagePresenter.ARG_TEXT, text);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mText = getArguments().getString(ARG_TEXT);
-        }
-
-        mPresenter.init(mText);
     }
 
     @Override
@@ -90,17 +80,5 @@ public class FrontPageFragment extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mPresenter.setNavigation(((MainActivity) getActivity()).getNavigation());
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mPresenter.onStart();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDestroy();
     }
 }
