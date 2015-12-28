@@ -19,10 +19,26 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private MainNavigation mNavigation = new MainNavigation() {
         @Override
         public void showFrontPage() {
-            Fragment fragment = FrontPageFragment.newInstance("Hello world!");
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
+            final Fragment fragment = FrontPageFragment.newInstance("Hello world!");
+            pushFragment(fragment, true);
+        }
+
+        @Override
+        public void showCameraPage() {
+            final Fragment fragment = FrontPageFragment.newInstance("Hello world!");
+            pushFragment(fragment, true);
+        }
+
+        @Override
+        public void showGalleryPage() {
+            final Fragment fragment = FrontPageFragment.newInstance("Hello world!");
+            pushFragment(fragment, true);
+        }
+
+        @Override
+        public void showSlideShowPage() {
+            final Fragment fragment = FrontPageFragment.newInstance("Hello world!");
+            pushFragment(fragment, true);
         }
     };
 
@@ -103,10 +119,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            mNavigation.showCameraPage();
         } else if (id == R.id.nav_gallery) {
-
+            mNavigation.showGalleryPage();
         } else if (id == R.id.nav_slideshow) {
-
+            mNavigation.showSlideShowPage();
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
