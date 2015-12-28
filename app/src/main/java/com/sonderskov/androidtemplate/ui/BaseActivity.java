@@ -6,9 +6,9 @@ import android.widget.Toast;
 import com.google.inject.Inject;
 import com.sonderskov.androidtemplate.R;
 
-import roboguice.activity.RoboFragmentActivity;
+import roboguice.activity.RoboActionBarActivity;
 
-public class BaseActivity extends RoboFragmentActivity implements DialogHelper {
+public class BaseActivity extends RoboActionBarActivity implements DialogHelper {
 
     @Inject
     private Resources mResources;
