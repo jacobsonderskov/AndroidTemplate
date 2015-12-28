@@ -3,16 +3,18 @@ package com.sonderskov.androidtemplate.ui;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.inject.Inject;
 
 import roboguice.fragment.RoboFragment;
 
-public abstract class BaseFragment extends RoboFragment implements DialogHelper {
+public abstract class BaseFragment<T> extends RoboFragment implements DialogHelper {
 
     @Inject
     private Resources mResources;
 
+    protected abstract T getViewImplementation();
     protected abstract BasePresenter getPresenter();
 
     @Override
@@ -26,13 +28,20 @@ public abstract class BaseFragment extends RoboFragment implements DialogHelper 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        ((BaseActivity)getActivity()).addToBackStack(this);
+        ((BaseActivity) getActivity()).addToBackStack(this);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getPresenter().onCreate(getArguments());
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // Attach the view, when the view is ready.
+        getPresenter().onViewCreated(getViewImplementation());
     }
 
     @Override

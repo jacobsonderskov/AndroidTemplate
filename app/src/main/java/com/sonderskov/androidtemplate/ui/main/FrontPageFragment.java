@@ -15,7 +15,7 @@ import com.sonderskov.androidtemplate.ui.DialogHelper;
 import roboguice.inject.InjectView;
 
 
-public class FrontPageFragment extends BaseFragment {
+public class FrontPageFragment extends BaseFragment<FrontPagePresenter.View> {
 
     @InjectView(R.id.text)
     private TextView mTextView;
@@ -41,6 +41,11 @@ public class FrontPageFragment extends BaseFragment {
 
     @Inject
     protected FrontPagePresenter mPresenter;
+
+    @Override
+    protected FrontPagePresenter.View getViewImplementation() {
+        return mView;
+    }
 
     @Override
     protected BasePresenter getPresenter() {
@@ -71,9 +76,6 @@ public class FrontPageFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         // Set up any event listeners (e.g. onClickListener)
         // ...
-
-        // Attach the view, when the view is ready.
-        mPresenter.setView(mView);
     }
 
     @Override

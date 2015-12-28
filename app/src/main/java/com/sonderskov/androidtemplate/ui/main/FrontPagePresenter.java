@@ -7,18 +7,16 @@ import com.sonderskov.androidtemplate.ui.BasePresenter;
 import com.sonderskov.androidtemplate.ui.DialogHelper;
 import com.sonderskov.androidtemplate.service.TypedCallback;
 
-public class FrontPagePresenter extends BasePresenter {
+public class FrontPagePresenter extends BasePresenter<FrontPagePresenter.View> {
 
     public static final String ARG_TEXT = "text";
 
-    public interface View {
-        DialogHelper getDialogHelper();
+    public interface View extends BasePresenter.View {
         void setText(String text);
         void setApiText(String apiText);
     }
 
     private MainNavigation mNavigation;
-    private View mView;
 
     @Inject
     private FrontPageModel mModel;
@@ -27,16 +25,12 @@ public class FrontPagePresenter extends BasePresenter {
         mNavigation = navigation;
     }
 
-    public void setView(View view) {
-        mView = view;
-    }
-
     @Override
     public void onCreate(Bundle args) {
         if (args!= null) {
-            mModel.init(args.getString(ARG_TEXT));
+            String text = args.getString(ARG_TEXT);
+            mModel.init(text);
         }
-
     }
 
     @Override
