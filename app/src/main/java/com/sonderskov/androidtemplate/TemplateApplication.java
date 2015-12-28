@@ -3,10 +3,12 @@ package com.sonderskov.androidtemplate;
 import android.app.Application;
 import android.content.res.Configuration;
 
+import com.google.inject.Stage;
+
 import roboguice.RoboGuice;
 
 
-public class MyApplication extends Application {
+public class TemplateApplication extends Application {
     static {
         RoboGuice.setUseAnnotationDatabases(false);
     }
@@ -19,6 +21,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //RoboGuice.getOrCreateBaseApplicationInjector(this, BuildConfig.DEBUG ? Stage.DEVELOPMENT : Stage.PRODUCTION, new TemplateModule(), new FormatterModule());
     }
 
     @Override

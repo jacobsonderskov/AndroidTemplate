@@ -5,11 +5,54 @@
     tools:context=".ui.main.FrontPageFragment"
     >
 
-    <TextView
-        android:id="@+id/text"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:text="This is a test."
-        />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Local text: "
+                />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="This is a test."
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="API text: "
+                />
+
+            <TextView
+                android:id="@+id/api_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="This is a test."
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
 
 </FrameLayout>

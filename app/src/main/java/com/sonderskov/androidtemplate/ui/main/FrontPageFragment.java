@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.google.inject.Inject;
 import com.sonderskov.androidtemplate.ui.BaseFragment;
 import com.sonderskov.androidtemplate.R;
+import com.sonderskov.androidtemplate.ui.DialogHelper;
 
 import roboguice.inject.InjectView;
 
@@ -19,12 +20,24 @@ public class FrontPageFragment extends BaseFragment {
 
     @InjectView(R.id.text)
     private TextView mTextView;
+    @InjectView(R.id.api_text)
+    private TextView mApiTextView;
 
 
     private FrontPagePresenter.View mView = new FrontPagePresenter.View() {
         @Override
+        public DialogHelper getDialogHelper() {
+            return FrontPageFragment.this;
+        }
+
+        @Override
         public void setText(String text) {
             mTextView.setText(text);
+        }
+
+        @Override
+        public void setApiText(String apiText) {
+            mApiTextView.setText(apiText);
         }
     };
 
