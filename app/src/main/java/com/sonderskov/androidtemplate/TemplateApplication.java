@@ -3,6 +3,8 @@ package com.sonderskov.androidtemplate;
 import android.app.Application;
 import android.content.res.Configuration;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import roboguice.RoboGuice;
 
 
@@ -21,6 +23,7 @@ public class TemplateApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        LeakCanary.install(this);
     }
 
     @Override
