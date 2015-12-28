@@ -1,4 +1,4 @@
-package com.sonderskov.androidtemplate;
+package com.sonderskov.androidtemplate.ui;
 
 public abstract class BasePresenter {
     public abstract void onStart();

@@ -1,4 +1,4 @@
-package com.sonderskov.androidtemplate;
+package com.sonderskov.androidtemplate.ui;
 
 import roboguice.fragment.RoboFragment;
 

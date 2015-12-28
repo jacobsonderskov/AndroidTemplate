@@ -1,4 +1,4 @@
-package com.sonderskov.androidtemplate.main;
+package com.sonderskov.androidtemplate.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.inject.Inject;
-import com.sonderskov.androidtemplate.BaseFragment;
+import com.sonderskov.androidtemplate.ui.BaseFragment;
 import com.sonderskov.androidtemplate.R;
 
 import roboguice.inject.InjectView;

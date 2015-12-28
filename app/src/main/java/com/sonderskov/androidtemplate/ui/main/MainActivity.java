@@ -1,4 +1,4 @@
-package com.sonderskov.androidtemplate.main;
+package com.sonderskov.androidtemplate.ui.main;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.sonderskov.androidtemplate.BaseActivity;
+import com.sonderskov.androidtemplate.ui.BaseActivity;
 import com.sonderskov.androidtemplate.R;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {

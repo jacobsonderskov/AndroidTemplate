@@ -1,4 +1,4 @@
-package com.sonderskov.androidtemplate.main;
+package com.sonderskov.androidtemplate.ui.main;
 
 public class FrontPageModel {
 
