@@ -15,7 +15,7 @@ import com.sonderskov.androidtemplate.ui.DialogHelper;
 import roboguice.inject.InjectView;
 
 
-public class FrontPageFragment extends BaseFragment<FrontPagePresenter.View> {
+public class FrontPageFragment extends BaseFragment<FrontPagePresenter.View, MainNavigation> {
 
     @InjectView(R.id.text)
     private TextView mTextView;
@@ -43,8 +43,13 @@ public class FrontPageFragment extends BaseFragment<FrontPagePresenter.View> {
     protected FrontPagePresenter mPresenter;
 
     @Override
-    protected FrontPagePresenter.View getViewImplementation() {
+    protected FrontPagePresenter.View getConcreteView() {
         return mView;
+    }
+
+    @Override
+    protected MainNavigation getConcreteNavigation() {
+        return ((MainActivity)getActivity()).getNavigation();
     }
 
     @Override
@@ -76,11 +81,5 @@ public class FrontPageFragment extends BaseFragment<FrontPagePresenter.View> {
         super.onViewCreated(view, savedInstanceState);
         // Set up any event listeners (e.g. onClickListener)
         // ...
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mPresenter.setNavigation(((MainActivity) getActivity()).getNavigation());
     }
 }

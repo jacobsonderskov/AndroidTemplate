@@ -3,18 +3,18 @@ package com.sonderskov.androidtemplate.ui;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.View;
 
 import com.google.inject.Inject;
 
 import roboguice.fragment.RoboFragment;
 
-public abstract class BaseFragment<T> extends RoboFragment implements DialogHelper {
+public abstract class BaseFragment<View, Navigation> extends RoboFragment implements DialogHelper {
 
     @Inject
     private Resources mResources;
 
-    protected abstract T getViewImplementation();
+    protected abstract View getConcreteView();
+    protected abstract Navigation getConcreteNavigation();
     protected abstract BasePresenter getPresenter();
 
     @Override
@@ -38,16 +38,22 @@ public abstract class BaseFragment<T> extends RoboFragment implements DialogHelp
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(android.view.View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // Attach the view, when the view is ready.
-        getPresenter().onViewCreated(getViewImplementation());
+        getPresenter().onViewCreated(getConcreteView());
     }
 
     @Override
     public void onStart() {
         super.onStart();
         getPresenter().onStart();
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getPresenter().onActivityCreated(getConcreteNavigation());
     }
 
     @Override
