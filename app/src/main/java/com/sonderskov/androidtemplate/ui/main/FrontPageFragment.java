@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.inject.Inject;
@@ -14,13 +15,14 @@ import com.sonderskov.androidtemplate.ui.DialogHelper;
 
 import roboguice.inject.InjectView;
 
-
 public class FrontPageFragment extends BaseFragment<FrontPagePresenter.View, MainNavigation> {
 
     @InjectView(R.id.text)
     private TextView mTextView;
     @InjectView(R.id.api_text)
     private TextView mApiTextView;
+    @InjectView(R.id.navigation_button)
+    private Button mNavigationButton;
 
     private FrontPagePresenter.View mView = new FrontPagePresenter.View() {
         @Override
@@ -81,5 +83,11 @@ public class FrontPageFragment extends BaseFragment<FrontPagePresenter.View, Mai
         super.onViewCreated(view, savedInstanceState);
         // Set up any event listeners (e.g. onClickListener)
         // ...
+        mNavigationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.onNavigationButtonClick();
+            }
+        });
     }
 }

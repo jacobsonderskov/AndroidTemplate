@@ -11,12 +11,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.sonderskov.androidtemplate.ui.BaseActivity;
 import com.sonderskov.androidtemplate.R;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private MainNavigation mNavigation = new MainNavigation() {
+
         @Override
         public void showFrontPage() {
             final Fragment fragment = FrontPageFragment.newInstance("Hello world!");
@@ -24,22 +26,46 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
 
         @Override
+        public void showPlaceHolder(String text) {
+            final Fragment fragment = PlaceHolderFragment.newInstance(text);
+            pushFragment(fragment);
+        }
+
+        @Override
         public void showCameraPage() {
-            final Fragment fragment = FrontPageFragment.newInstance("Hello world!");
-            pushFragment(fragment, true);
+            showPlaceHolder("Camera Page");
         }
 
         @Override
         public void showGalleryPage() {
-            final Fragment fragment = FrontPageFragment.newInstance("Hello world!");
-            pushFragment(fragment, true);
+            showPlaceHolder("Show Gallery Page");
         }
 
         @Override
         public void showSlideShowPage() {
-            final Fragment fragment = FrontPageFragment.newInstance("Hello world!");
-            pushFragment(fragment, true);
+            showPlaceHolder("Slide Show Page");
         }
+
+        @Override
+        public void showDevicePage() {
+            showPlaceHolder("Device Page");
+        }
+
+        @Override
+        public void showShare() {
+            Toast.makeText(MainActivity.this, "Sharing is caring", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void showSend() {
+            Toast.makeText(MainActivity.this, "Send More Snacks", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void showSettings() {
+            Toast.makeText(MainActivity.this, "Settings are fun!", Toast.LENGTH_SHORT).show();
+        }
+
     };
 
     public MainNavigation getNavigation() {
@@ -105,6 +131,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            mNavigation.showSettings();
             return true;
         }
 
@@ -124,12 +151,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             mNavigation.showGalleryPage();
         } else if (id == R.id.nav_slideshow) {
             mNavigation.showSlideShowPage();
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.nav_device) {
+            mNavigation.showDevicePage();
         } else if (id == R.id.nav_share) {
-
+            mNavigation.showShare();
         } else if (id == R.id.nav_send) {
-
+            mNavigation.showSend();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,7 +1,16 @@
 package com.sonderskov.androidtemplate.ui;
 
-/**
- * Created by jacobsonderskov on 28/12/15.
- */
-public class NullPresenter {
+import android.os.Bundle;
+
+public class NullPresenter extends BasePresenter<Object, Object> {
+
+    @Override
+    public void onCreate(Bundle args) {
+        // Do nothing
+    }
+
+    @Override
+    public void onStart() {
+        // Do nothing
+    }
 }

@@ -3,9 +3,8 @@ package com.sonderskov.androidtemplate.ui.main;
 import android.os.Bundle;
 
 import com.google.inject.Inject;
-import com.sonderskov.androidtemplate.ui.BasePresenter;
-import com.sonderskov.androidtemplate.ui.DialogHelper;
 import com.sonderskov.androidtemplate.service.TypedCallback;
+import com.sonderskov.androidtemplate.ui.BasePresenter;
 
 public class FrontPagePresenter extends BasePresenter<FrontPagePresenter.View, MainNavigation> {
 
@@ -16,14 +15,8 @@ public class FrontPagePresenter extends BasePresenter<FrontPagePresenter.View, M
         void setApiText(String apiText);
     }
 
-    private MainNavigation mNavigation;
-
     @Inject
     private FrontPageModel mModel;
-
-    public void setNavigation(final MainNavigation navigation) {
-        mNavigation = navigation;
-    }
 
     @Override
     public void onCreate(Bundle args) {
@@ -36,28 +29,24 @@ public class FrontPagePresenter extends BasePresenter<FrontPagePresenter.View, M
     @Override
     public void onStart() {
         // Perform any loading.
-        mView.setText(mModel.getText());
-
+        getView().setText(mModel.getText());
         mModel.getApiText(new TypedCallback<String>() {
-
             @Override
             public void onSuccess(String result) {
-                if(mView == null) return; // On async calls we can't be sure that there is a View.
-
-                mView.setApiText(result);
+                if (getView() == null)
+                    return; // On async calls we can't be sure that there is a View.
+                getView().setApiText(result);
             }
 
             @Override
             public void onError(Object error) {
-                if(mView == null) return;
-                mView.getDialogHelper().showErrorDialog(error);
+                if (getView() == null) return;
+                getView().getDialogHelper().showErrorDialog(error);
             }
         });
-
     }
 
-    @Override
-    public void onDestroy() {
-        mView = null;
+    public void onNavigationButtonClick() {
+        getNavigation().showPlaceHolder("Navigation Button clicked!");
     }
 }

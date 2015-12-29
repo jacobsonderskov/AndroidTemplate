@@ -4,12 +4,22 @@ import android.os.Bundle;
 
 public abstract class BasePresenter<View, Navigation> {
 
+
+
     public interface View {
         DialogHelper getDialogHelper();
     }
 
-    protected View mView;
-    protected Navigation mNavigation;
+    private View mView;
+    private Navigation mNavigation;
+
+    protected View getView() {
+        return mView;
+    }
+
+    protected Navigation getNavigation() {
+        return mNavigation;
+    }
 
     public abstract void onCreate(Bundle args);
 
